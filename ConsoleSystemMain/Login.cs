@@ -14,6 +14,7 @@ namespace SimpleProject
         public int LoopWhile { get; private set; }
         public int VerifyGoHome { get; private set; }
         public int Choice { get; set; }
+        public char ExitOfAverage { get; set; } = 's';
 
         public Login()
         {

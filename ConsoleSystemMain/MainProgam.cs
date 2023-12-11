@@ -11,13 +11,12 @@ namespace SimpleProject
 
     class SystemMain
     {
-
+        
         static Login LoginManager = new Login();
         static Login CurrentUser = new Login();
 
         static void Main(string[] args)
         {
-
             Interface.HoursAndDate();
             Interface.ShowCreateAccount();
             MainLogin();
@@ -48,11 +47,12 @@ namespace SimpleProject
 
                     if (CurrentUser.VerifyLogin())
                     {
-
+                        Interface.AcceptdLogin();
                         LoginManager.ResetLoopWhile();
+
                         while (LoginManager.LoopWhile < 3)
                         {
-                            Interface.AcceptdLogin();
+                            Interface.Home();
                             Interface.ChooseUser();
                             LoginManager.Choice = Math.Abs(int.Parse(Console.ReadLine()));
                             if (LoginManager.Choice > 0 && LoginManager.Choice < 4)
@@ -84,7 +84,7 @@ namespace SimpleProject
             {
                 LoginManager.ResetLoopWhile();
                 Interface.CalculatorAverage();
-                while (LoginManager.LoopWhile < 3)
+                while (LoginManager.ExitOfAverage == 's' || LoginManager.ExitOfAverage == 'S')
                 {
                     CalculatorAverage();
                 }
@@ -118,10 +118,13 @@ namespace SimpleProject
 
             for (int i = 0; i < cal.Count; i++)
             {
-                Console.WriteLine($"Enter value ({i + 1})");
+                Console.Write($"Enter value({i + 1}): ");
                 cal.Total += Math.Abs(double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture));
+                Console.WriteLine();
             }
             Console.WriteLine(cal);
+            Console.WriteLine("You he can realized other calculate of average? (S/N)");
+            LoginManager.ExitOfAverage = char.Parse(Console.ReadLine());
         }
 
         static void EmpList()
@@ -130,7 +133,7 @@ namespace SimpleProject
             List<Employee> list = new List<Employee>();
             Employee functionEmp = new Employee();
 
-            Console.WriteLine("\nHow many employeers he can register? ");
+            Console.Write("\nHow many employeers he can register? ");
             functionEmp.ForEmp = Math.Abs(int.Parse(Console.ReadLine()));
 
             for (int i = 0; i < functionEmp.ForEmp; i++)
