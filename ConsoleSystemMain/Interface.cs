@@ -36,10 +36,20 @@ namespace SimpleProject
             Console.WriteLine($"\n\t(==={time}===)");
         }
 
-        static public void ChooseUser()
+        static public void ChooseList()
         {
-            Console.WriteLine("\n1. Calculator of average \n2. List of employees \n3. Exit of progam \nEnter (1/2/3): \n");
+            Console.WriteLine("\n1. Calculator of average \n2. List of employees \n3. Calculate of matriz\n4. Exit progam \nEnter (1/2/3/4): ");
             
+        }
+
+        static public void ChooseMatriz()
+        {
+            Console.Write("1. Sum matriz \n2. Subtracion matriz\nEnter (1/2): ");
+        }
+
+        static public void CalculatorMatriz()
+        {
+            Console.WriteLine("\n\t(=== Calculator Matriz ===) \n");
         }
 
         static public void CalculatorAverage()
@@ -56,7 +66,7 @@ namespace SimpleProject
         {
             Console.WriteLine("\n\t(=== Functional of List ===)");
             Console.WriteLine("\n(1) Addtional Employee \n(2) Remove Employee \n(3) Increase Salary\n(4) Decrease Salary \n(5) Show list \n(6) Exit for home \n");
-            Console.WriteLine("Enter (1/2/3/4/5/6): ");
+            Console.Write("\nEnter (1/2/3/4/5/6): ");
         }
 
         static public void AddiotionalEmp()

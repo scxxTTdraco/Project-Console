@@ -12,9 +12,13 @@ namespace SimpleProject
         public string Username { set; get; }
         public string KeyUsername { set; get; }
         public int LoopWhile { get; private set; }
+        public int LoopWhileMatriz { get; private set; } = 0;
         public int VerifyGoHome { get; private set; }
         public int Choice { get; set; }
         public char ExitOfAverage { get; set; } = 's';
+        public char ExitOfMatriz { get; set; } = 's';
+
+
 
         public Login()
         {
@@ -50,6 +54,15 @@ namespace SimpleProject
         public void IncreaseGoHome()
         {
             VerifyGoHome++;
+        }
+        public void IncreaseOverLoopWhileMatriz()
+        {
+            LoopWhileMatriz = 3;
+        }
+
+        public void IncreaseLoopWhileMatriz()
+        {
+            LoopWhileMatriz++;
         }
     }
 }

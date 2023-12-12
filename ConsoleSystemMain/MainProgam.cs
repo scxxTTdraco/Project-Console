@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using ConsoleSystemMain;
 
 
 namespace SimpleProject
@@ -11,7 +12,7 @@ namespace SimpleProject
 
     class SystemMain
     {
-        
+
         static Login LoginManager = new Login();
         static Login CurrentUser = new Login();
 
@@ -25,10 +26,10 @@ namespace SimpleProject
         static void MainLogin()
         {
 
-            Console.WriteLine("Create your username: ");
+            Console.Write("Create your username: ");
             CurrentUser.Username = Console.ReadLine();
 
-            Console.WriteLine("Create your password: ");
+            Console.Write("Create your password: ");
             CurrentUser.Password = Console.ReadLine();
 
             if (CurrentUser.Password != null && CurrentUser.Username != null)
@@ -38,9 +39,9 @@ namespace SimpleProject
 
                     Interface.ShowLogin();
 
-                    Console.WriteLine("Enter username: ");
+                    Console.Write("Enter username: ");
                     CurrentUser.KeyUsername = Console.ReadLine();
-                    Console.WriteLine("Enter password: ");
+                    Console.Write("Enter password: ");
                     CurrentUser.KeyPassword = Console.ReadLine();
 
                     LoginManager.IncreaseLoopWhile();
@@ -53,9 +54,9 @@ namespace SimpleProject
                         while (LoginManager.LoopWhile < 3)
                         {
                             Interface.Home();
-                            Interface.ChooseUser();
+                            Interface.ChooseList();
                             LoginManager.Choice = Math.Abs(int.Parse(Console.ReadLine()));
-                            if (LoginManager.Choice > 0 && LoginManager.Choice < 4)
+                            if (LoginManager.Choice > 0 && LoginManager.Choice < 5)
                             {
                                 Functionalities();
                             }
@@ -98,14 +99,25 @@ namespace SimpleProject
 
                 if (LoginManager.VerifyGoHome == 1)
                 {
-                    //Vai para a interface original caso o usuario digite 6 nas opções detro da função emplist
+                    //Vai para a interface original caso o usuario digite 6 nas opções dentro da função emplist
                     LoginManager.ResetLoopWhile();
                 }
 
             }
             else if (LoginManager.Choice == 3)
             {
+                LoginManager.ResetLoopWhile();
+                Interface.CalculatorMatriz();
+                while (LoginManager.ExitOfMatriz == 's' || LoginManager.ExitOfMatriz == 'S')   
+                {
+                    CalMatriz();
+                }
+
+            }
+            else if (LoginManager.Choice == 4)
+            {
                 Environment.Exit(0);
+                Console.ReadLine();
             }
         }
 
@@ -270,5 +282,63 @@ namespace SimpleProject
                 }
             }
         }
+
+        static void CalMatriz() 
+        {
+            while (LoginManager.LoopWhileMatriz < 3)
+            {
+                Interface.ChooseMatriz();
+                Matriz.ChooseMatriz = Math.Abs(int.Parse(Console.ReadLine()));
+                LoginManager.IncreaseLoopWhileMatriz();
+
+                if(Matriz.ChooseMatriz > 0 && Matriz.ChooseMatriz < 3) 
+                {
+                    LoginManager.IncreaseOverLoopWhileMatriz();
+                    Console.Write("Enter size of matriz: ");
+                    Matriz.MatSize = Math.Abs(int.Parse(Console.ReadLine()));
+                    Matriz.InitializerMatrizA();
+                    Matriz.InitializerMatrizB();
+                    Matriz.InitializerMatrizResult();
+
+                    Console.WriteLine($"\nEnter values in Matriz A: ({Matriz.MatSize} by {Matriz.MatSize})");
+                    Matriz.TypeValuesInMatrizA();
+
+                    Console.WriteLine($"\nEnter values in Matriz B: ({Matriz.MatSize} by {Matriz.MatSize})");
+                    Matriz.TypeValuesInMatrizB();
+
+                    switch (Matriz.ChooseMatriz)
+                    {
+                        case 1:
+                            Matriz.SumOfMatriz();
+                            Console.WriteLine("\nResult of sum: ");
+                            Console.WriteLine("------------------------");
+                            Matriz.PrintMatrizResult();
+                            Console.WriteLine("------------------------");
+                            break;
+
+                        case 2:
+                            Matriz.SubtracionOfMatriz();
+                            
+                            Console.WriteLine("\nResult of subtracion: ");
+                            Console.WriteLine("------------------------");
+                            Matriz.PrintMatrizResult();
+                            Console.WriteLine("------------------------");
+
+                            break;
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Number be must 1 to 3");
+                }
+
+                Console.WriteLine("Want realized other calculate? (S/N) ");
+                LoginManager.ExitOfMatriz = char.Parse(Console.ReadLine());
+
+            }
+
+        }
+
     }
 }
